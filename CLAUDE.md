@@ -11,20 +11,94 @@ A personal SQL learning repo. The user is learning MySQL from scratch, progressi
 **Sakila** — MySQL's official DVD rental sample database. Loaded into a Docker container.
 
 ```bash
-# Start container (credentials: root / root)
+# Start container (credentials: root / practice)
 docker start sql-practice
 
 # Load schema (CLI only — DELIMITER syntax does not work via JDBC/notebooks)
-docker exec -i sql-practice mysql -u root -proot < sakila-schema.sql
+docker exec -i sql-practice mysql -u root -ppractice < schema/setup.sql
 
 # Interactive shell
-docker exec -it sql-practice mysql -u root -proot sakila
+docker exec -it sql-practice mysql -u root -ppractice sakila
 ```
 
 **Connection string used in all notebooks:**
 ```
-mysql+pymysql://root:root@127.0.0.1:3306/sakila
+mysql+pymysql://root:practice@127.0.0.1:3306/sakila
 ```
+
+## Sakila Schema
+
+```
+                   ┌──────────┐
+                   │ language │◄──────────────┐
+                   └────┬─────┘               │
+                        │                     │
+┌────────┐   ┌──────────▼──────────────────────────┐   ┌──────────┐
+│ actor  │   │               film                  │   │ category │
+│────────│   │─────────────────────────────────────│   │──────────│
+│actor_id│   │film_id  title  rating  rental_rate  │   │category_id│
+└───┬────┘   │rental_duration  length  language_id │   └────┬─────┘
+    │        └──────┬──────────────────────┬───────┘        │
+    │               │                      │                │
+    │        ┌──────▼──────┐    ┌──────────▼──────┐        │
+    └───────►│ film_actor  │    │  film_category  │◄───────┘
+             │─────────────│    │─────────────────│
+             │actor_id(FK) │    │film_id(FK)      │
+             │film_id(FK)  │    │category_id(FK)  │
+             └──────┬──────┘    └─────────────────┘
+                    │
+             ┌──────▼──────────┐      ┌──────────────┐
+             │    inventory    │      │    store     │
+             │─────────────────│      │──────────────│
+             │inventory_id     │      │store_id      │◄──┐
+             │film_id(FK)      │      │address_id(FK)│   │
+             │store_id(FK)─────┼─────►│manager_staff │   │
+             └──────┬──────────┘      └──────────────┘   │
+                    │                                     │
+             ┌──────▼──────────┐      ┌──────────────┐   │
+             │     rental      │      │    staff     │   │
+             │─────────────────│      │──────────────│   │
+             │rental_id        │      │staff_id      ├───┘
+             │inventory_id(FK) │      │address_id(FK)│
+             │customer_id(FK)──┼──┐   │store_id(FK)  │
+             │staff_id(FK)─────┼──┼──►│email  active │
+             └──────┬──────────┘  │   └──────────────┘
+                    │             │
+             ┌──────▼──────────┐  │   ┌──────────────┐
+             │     payment     │  │   │   customer   │
+             │─────────────────│  │   │──────────────│
+             │payment_id       │  └──►│customer_id   │
+             │rental_id(FK)    │      │address_id(FK)│
+             │customer_id(FK)  │      │store_id(FK)  │
+             │staff_id(FK)     │      │email  active │
+             │amount           │      └──────┬───────┘
+             └─────────────────┘             │
+                                      ┌──────▼───────┐
+                                      │   address    │
+                                      │──────────────│
+                                      │address_id    │
+                                      │city_id(FK)───┼──► city ──► country
+                                      │phone         │
+                                      └──────────────┘
+```
+
+| Table           | Rows   | Purpose                                   |
+|-----------------|--------|-------------------------------------------|
+| `film`          | 1,000  | Movie catalog                             |
+| `actor`         | 200    | Actors                                    |
+| `film_actor`    | 5,462  | Many-to-many: films ↔ actors              |
+| `film_category` | 1,000  | Many-to-many: films ↔ categories          |
+| `category`      | 16     | Genre categories                          |
+| `language`      | 6      | Film languages                            |
+| `inventory`     | 4,581  | Physical copies of films per store        |
+| `rental`        | 16,044 | Each rental transaction                   |
+| `payment`       | 16,049 | Payments per rental                       |
+| `customer`      | 599    | Store customers                           |
+| `staff`         | 2      | Store employees                           |
+| `store`         | 2      | Physical store locations                  |
+| `address`       | 603    | Addresses for customers/staff/stores      |
+| `city`          | 600    | Cities                                    |
+| `country`       | 109    | Countries                                 |
 
 ## Notebook Structure
 
