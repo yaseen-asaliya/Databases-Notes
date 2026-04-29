@@ -10,20 +10,10 @@ A personal SQL learning repo. The user is learning MySQL from scratch, progressi
 
 **Sakila** — MySQL's official DVD rental sample database. Loaded into a Docker container.
 
-```bash
-# Start container (credentials: root / practice)
-docker start sql-practice
-
-# Load schema (CLI only — DELIMITER syntax does not work via JDBC/notebooks)
-docker exec -i sql-practice mysql -u root -ppractice < schema/setup.sql
-
-# Interactive shell
-docker exec -it sql-practice mysql -u root -ppractice sakila
-```
 
 **Connection string used in all notebooks:**
 ```
-mysql+pymysql://root:practice@127.0.0.1:3306/sakila
+mysql+pymysql://root:root@127.0.0.1:3306/sakila
 ```
 
 ## Sakila Schema
