@@ -111,13 +111,23 @@ One `.ipynb` file per topic in the root directory. Each notebook follows the sam
 |---|---|
 | `01-select-basics.ipynb` | SELECT, aliases, computed columns, DISTINCT, ORDER BY, LIMIT/OFFSET |
 | `02-filtering.ipynb` | WHERE, AND/OR/NOT, IN, BETWEEN, LIKE, IS NULL |
-| `03-aggregations.ipynb` | COUNT/SUM/AVG/MIN/MAX, GROUP BY, HAVING, WHERE vs HAVING |
-| `04-joins.ipynb` | INNER JOIN, LEFT JOIN, RIGHT JOIN, multiple JOINs |
-| `05-subqueries.ipynb` | Subquery in WHERE/SELECT/FROM, EXISTS/NOT EXISTS |
-| `06-acid-transactions.ipynb` | ACID properties, START TRANSACTION, COMMIT, ROLLBACK, SAVEPOINT |
-| `07-indexing.ipynb` | B-tree, SHOW INDEX, EXPLAIN, CREATE/DROP INDEX, composite indexes |
-| `08-window-functions.ipynb` | OVER, PARTITION BY, ROW_NUMBER/RANK/DENSE_RANK, LAG/LEAD, running totals |
-| `09-query-optimization.ipynb` | EXPLAIN output, index-breaking patterns, query rewrites, EXPLAIN ANALYZE |
+| `03-string-functions.ipynb` | CONCAT, SUBSTRING, UPPER/LOWER, TRIM, REPLACE, LENGTH, INSTR |
+| `04-datetime-functions.ipynb` | NOW, CURDATE, DATE_FORMAT, DATEDIFF, DATE_ADD, TIMESTAMPDIFF |
+| `05-case-statements.ipynb` | Simple CASE, searched CASE, CASE in aggregations and ORDER BY |
+| `06-null-handling.ipynb` | COALESCE, IFNULL, NULLIF, NULL in aggregations, NULL traps |
+| `07-aggregations.ipynb` | COUNT/SUM/AVG/MIN/MAX, GROUP BY, HAVING, WHERE vs HAVING |
+| `08-joins.ipynb` | INNER JOIN, LEFT JOIN, RIGHT JOIN, multiple JOINs |
+| `09-union.ipynb` | UNION, UNION ALL, column matching rules, ORDER BY with UNION |
+| `10-subqueries.ipynb` | Subquery in WHERE/SELECT/FROM, EXISTS/NOT EXISTS |
+| `11-ctes.ipynb` | WITH clause, multiple CTEs, CTE vs subquery |
+| `12-window-functions.ipynb` | OVER, PARTITION BY, ROW_NUMBER/RANK/DENSE_RANK, LAG/LEAD, running totals |
+| `13-ddl.ipynb` | CREATE TABLE, ALTER TABLE, DROP, data types, constraints, CHECK |
+| `14-normalization.ipynb` | 1NF, 2NF, 3NF, transitive dependencies, denormalization tradeoffs |
+| `15-views.ipynb` | CREATE VIEW, DROP VIEW, updatable views, Sakila built-in views |
+| `16-stored-procedures.ipynb` | CREATE PROCEDURE, IN/OUT params, CALL, stored functions |
+| `17-acid-transactions.ipynb` | ACID properties, START TRANSACTION, COMMIT, ROLLBACK, SAVEPOINT |
+| `18-indexing.ipynb` | B-tree, SHOW INDEX, EXPLAIN, CREATE/DROP INDEX, composite indexes |
+| `19-query-optimization.ipynb` | EXPLAIN output, index-breaking patterns, query rewrites, EXPLAIN ANALYZE |
 
 ## Key Rules When Editing Notebooks
 
